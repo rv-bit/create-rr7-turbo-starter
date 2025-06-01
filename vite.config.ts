@@ -3,6 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import { reactRouterDevTools } from "react-router-devtools";
 import babel from "vite-plugin-babel";
+import devtoolsJson from "vite-plugin-devtools-json";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 import { defineConfig } from "vite";
@@ -14,13 +15,14 @@ const devConfig = {
 	},
 
 	plugins: [
+		devtoolsJson(),
 		reactRouterDevTools(),
 		reactRouter(),
 		tsconfigPaths(),
 		babel({
 			filter: /\.[jt]sx?$/,
 			babelConfig: {
-				presets: ["@babel/preset-typescript"], // if you use TypeScript
+				presets: ["@babel/preset-typescript"],
 				plugins: [["babel-plugin-react-compiler"]],
 			},
 		}),
@@ -37,12 +39,13 @@ const devConfig = {
 
 const prodConfig = {
 	plugins: [
+		devtoolsJson(),
 		reactRouter(),
 		tsconfigPaths(),
 		babel({
 			filter: /\.[jt]sx?$/,
 			babelConfig: {
-				presets: ["@babel/preset-typescript"], // if you use TypeScript
+				presets: ["@babel/preset-typescript"],
 				plugins: [["babel-plugin-react-compiler"]],
 			},
 		}),
