@@ -2,12 +2,14 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { admin, createAuthMiddleware, emailOTP, twoFactor, username } from "better-auth/plugins";
 
-import db from "../database/database.server";
-import { getEnv } from "../environment/env.server";
+import db from "~/lib/database/database.server";
+import { sendEmail } from "~/lib/email/mailer.server";
+import { getEnv } from "~/lib/environment/env.server";
 
+import * as EMAIL_TEMPLATES from "~/lib/email/templates";
 import * as APP_CONFIG from "~/resources/app-config";
 
-const trustedOrigins = getEnv(import.meta.env)
+const trustedOrigins = getEnv(process.env)
 	.BETTER_TRUSTED_ORIGINS?.split(",")
 	.map((origin) => {
 		return origin.startsWith("http") ? origin : `https://${origin}`;
@@ -19,13 +21,13 @@ export const auth = betterAuth({
 		provider: "mysql",
 	}),
 
-	secret: getEnv(import.meta.env).BETTER_AUTH_SECRET,
+	secret: getEnv(process.env).BETTER_AUTH_SECRET,
 	trustedOrigins: trustedOrigins || ["http://localhost:3000"],
 
 	socialProviders: {
 		github: {
-			clientId: getEnv(import.meta.env).GITHUB_CLIENT_ID,
-			clientSecret: getEnv(import.meta.env).GITHUB_CLIENT_SECRET,
+			clientId: getEnv(process.env).GITHUB_CLIENT_ID,
+			clientSecret: getEnv(process.env).GITHUB_CLIENT_SECRET,
 			scope: ["user:email", "read:user"],
 			mapProfileToUser(profile) {
 				return {
@@ -37,8 +39,8 @@ export const auth = betterAuth({
 			},
 		},
 		google: {
-			clientId: getEnv(import.meta.env).GOOGLE_CLIENT_ID,
-			clientSecret: getEnv(import.meta.env).GOOGLE_CLIENT_SECRET,
+			clientId: getEnv(process.env).GOOGLE_CLIENT_ID,
+			clientSecret: getEnv(process.env).GOOGLE_CLIENT_SECRET,
 			scope: ["email", "profile"],
 			mapProfileToUser(profile) {
 				return {
@@ -63,21 +65,21 @@ export const auth = betterAuth({
 		changeEmail: {
 			enabled: true,
 			sendChangeEmailVerification: async ({ user, newEmail, url, token }, request) => {
-				// await sendEmail({
-				// 	to: user.email, // verification email must be sent to the current user email to approve the change
-				// 	subject: `Approve email change to - ${newEmail}`,
-				// 	text: `Click the link to approve the change: ${url}`,
-				// });
+				await sendEmail({
+					to: user.email, // verification email must be sent to the current user email to approve the change
+					subject: `Approve email change to - ${newEmail}`,
+					text: `Click the link to approve the change: ${url}`,
+				});
 			},
 		},
 		deleteUser: {
 			enabled: true,
 			sendDeleteAccountVerification: async ({ user, url, token }, request) => {
-				// await sendEmail({
-				// 	to: user.email,
-				// 	subject: "Delete your account",
-				// 	text: `Click the link to delete your account: ${url}`,
-				// });
+				await sendEmail({
+					to: user.email,
+					subject: "Delete your account",
+					text: `Click the link to delete your account: ${url}`,
+				});
 			},
 		},
 	},
@@ -85,14 +87,14 @@ export const auth = betterAuth({
 	emailAndPassword: {
 		enabled: true,
 		sendResetPassword: async ({ user, url, token }, request) => {
-			// await sendEmail({
-			// 	to: user.email,
-			// 	subject: "Reset your password",
-			// 	html: await reactResetPasswordEmail({
-			// 		username: user.name,
-			// 		resetLink: url,
-			// 	}),
-			// });
+			await sendEmail({
+				to: user.email,
+				subject: "Reset your password",
+				html: await EMAIL_TEMPLATES.reactResetPasswordEmail({
+					username: user.name,
+					resetLink: url,
+				}),
+			});
 		},
 	},
 
@@ -152,11 +154,11 @@ export const auth = betterAuth({
 			issuer: APP_CONFIG.APP_NAME,
 			otpOptions: {
 				async sendOTP({ user, otp }, request) {
-					// await sendEmail({
-					// 	to: user.email,
-					// 	subject: "Two factor authentication OTP",
-					// 	text: `Your OTP is: ${otp}`,
-					// });
+					await sendEmail({
+						to: user.email,
+						subject: "Two factor authentication OTP",
+						text: `Your OTP is: ${otp}`,
+					});
 				},
 			},
 		}),
@@ -164,23 +166,23 @@ export const auth = betterAuth({
 		emailOTP({
 			async sendVerificationOTP({ email, otp, type }) {
 				if (type === "sign-in") {
-					// await sendEmail({
-					// 	to: email,
-					// 	subject: "Sign in OTP",
-					// 	text: `Your OTP is: ${otp}`,
-					// });
+					await sendEmail({
+						to: email,
+						subject: "Sign in OTP",
+						text: `Your OTP is: ${otp}`,
+					});
 				} else if (type === "email-verification") {
-					// await sendEmail({
-					// 	to: email,
-					// 	subject: "Email verification OTP",
-					// 	text: `Your OTP is: ${otp}`,
-					// });
+					await sendEmail({
+						to: email,
+						subject: "Email verification OTP",
+						text: `Your OTP is: ${otp}`,
+					});
 				} else {
-					// await sendEmail({
-					// 	to: email,
-					// 	subject: "Password reset OTP",
-					// 	text: `Your OTP is: ${otp}`,
-					// });
+					await sendEmail({
+						to: email,
+						subject: "Password reset OTP",
+						text: `Your OTP is: ${otp}`,
+					});
 				}
 			},
 			otpLength: 6,
@@ -188,5 +190,3 @@ export const auth = betterAuth({
 		}),
 	],
 });
-
-export default auth;
