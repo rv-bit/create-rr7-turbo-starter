@@ -10,6 +10,7 @@ const envSchema = publicEnvSchema.extend({
 	MYSQL_URL: z.string().min(1, "MYSQL_URL must be set"),
 	MYSQL_PORT: z.string().optional(),
 
+	BETTER_AUTH_URL: z.string().min(1, "BETTER_AUTH_URL must be set"),
 	BETTER_AUTH_SECRET: z.string().min(1, "BETTER_AUTH_SECRET must be set"),
 	BETTER_TRUSTED_ORIGINS: z.string().min(1, "BETTER_TRUSTED_ORIGINS must be set"),
 

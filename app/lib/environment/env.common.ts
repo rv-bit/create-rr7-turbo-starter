@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 const publicEnvSchema = z.object({
-	VITE_GOOGLE_MAPS_API_KEY: z.string().min(1, ""),
-	VITE_STRIPE_PUBLIC_KEY: z.string().min(1, ""),
+	VITE_DEFAULT_EMAIL: z.string().min(1, ""),
+	VITE_HELP_EMAIL: z.string().min(1, ""),
 });
 
 function makeTypeEnv<T>(schema: { parse: (data: unknown) => T }) {

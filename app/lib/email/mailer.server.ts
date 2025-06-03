@@ -41,7 +41,7 @@ if (process.env.NODE_ENV !== "test") {
  */
 export const sendEmail = async (options: EmailProps) => {
 	await transport.sendMail({
-		from: process.env.DEFAULT_EMAIL,
+		from: getEnv(process.env).VITE_DEFAULT_EMAIL,
 		...options,
 	});
 };
