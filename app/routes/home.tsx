@@ -1,5 +1,6 @@
-import { auth } from "~/lib/auth/auth.server";
 import type { Route } from "./+types/home";
+
+import { auth } from "~/lib/auth/auth.server";
 
 export function meta({}: Route.MetaArgs) {
 	return [{ title: "New React Router App" }, { name: "description", content: "Welcome to React Router!" }];

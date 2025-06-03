@@ -2,13 +2,16 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { admin, createAuthMiddleware, emailOTP, twoFactor, username } from "better-auth/plugins";
 
-import db from "~/lib/database/database.server";
 import * as schema from "~/lib/database/schema";
+
+import db from "~/lib/database/database.server";
+
 import { sendEmail } from "~/lib/email/mailer.server";
 import { getEnv } from "~/lib/environment/env.server";
 
 import * as EMAIL_TEMPLATES from "~/lib/email/templates";
 import * as APP_CONFIG from "~/resources/app-config";
+import { getBaseUrl } from "../utils";
 
 const trustedOrigins = getEnv(process.env)
 	.BETTER_TRUSTED_ORIGINS?.split(",")
@@ -24,7 +27,7 @@ export const auth = betterAuth({
 	}),
 
 	basePath: "/api/auth",
-	baseURL: getEnv(process.env).BETTER_AUTH_URL,
+	baseURL: getBaseUrl(),
 	secret: getEnv(process.env).BETTER_AUTH_SECRET,
 	trustedOrigins: trustedOrigins || ["http://localhost:3000"],
 
