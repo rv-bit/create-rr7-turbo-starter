@@ -1,7 +1,7 @@
 import { Toaster as Sonner, type ToasterProps } from "sonner";
 import useRootLoader from "~/hooks/useRootLoader";
 
-const Toaster = ({ ...props }: ToasterProps) => {
+export default function Toaster({ ...props }: ToasterProps) {
 	const { theme: cookieTheme } = useRootLoader();
 
 	const systemPreferenceDark = typeof window !== "undefined" ? window.matchMedia("(prefers-color-scheme: dark)").matches : false;
@@ -21,6 +21,4 @@ const Toaster = ({ ...props }: ToasterProps) => {
 			{...props}
 		/>
 	);
-};
-
-export { Toaster };
+}
