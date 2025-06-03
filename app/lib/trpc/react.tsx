@@ -53,7 +53,7 @@ const links = [
 ];
 
 export const { TRPCProvider, useTRPC } = createTRPCContext<AppRouter>();
-export function TRPCReactProvider({ children }: PropsWithChildren) {
+export const TRPCReactProvider = ({ children }: PropsWithChildren) => {
 	const queryClient = getQueryClient();
 	const [trpcClient] = useState(() =>
 		createTRPCClient<AppRouter>({
@@ -68,7 +68,7 @@ export function TRPCReactProvider({ children }: PropsWithChildren) {
 			</TRPCProvider>
 		</QueryClientProvider>
 	);
-}
+};
 
 export type RouterInputs = inferRouterInputs<AppRouter>;
 export type RouterOutputs = inferRouterOutputs<AppRouter>;
