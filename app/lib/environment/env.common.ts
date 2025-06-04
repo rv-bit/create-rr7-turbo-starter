@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 const publicEnvSchema = z.object({
-	VITE_BASE_URL: z.string().min(1, ""),
 	VITE_DEFAULT_EMAIL: z.string().min(1, ""),
 	VITE_HELP_EMAIL: z.string().min(1, ""),
 });

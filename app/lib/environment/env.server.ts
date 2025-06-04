@@ -4,6 +4,9 @@ import { z } from "zod";
 import { makeTypeEnv, publicEnvSchema } from "./env.common";
 
 const envSchema = publicEnvSchema.extend({
+	// Environment variables for the Railway deployment
+	RAILWAY_PUBLIC_DOMAIN: z.string().min(1, "RAILWAY_PUBLIC_DOMAIN must be set"),
+
 	MYSQLHOST: z.string().min(1, "MYSQLHOST must be set"),
 	MYSQLUSER: z.string().min(1, "MYSQLUSER must be set"),
 	MYSQLPASSWORD: z.string().min(1, "MYSQLPASSWORD must be set"),

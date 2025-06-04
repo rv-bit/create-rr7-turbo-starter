@@ -6,12 +6,13 @@ import * as schema from "~/lib/database/schema";
 
 import db from "~/lib/database/database.server";
 
+import { getBaseUrl } from "~/lib/utils";
+
 import { sendEmail } from "~/lib/email/mailer.server";
 import { getEnv } from "~/lib/environment/env.server";
 
 import * as EMAIL_TEMPLATES from "~/lib/email/templates";
 import * as APP_CONFIG from "~/resources/app-config";
-import { getBaseUrl } from "../utils";
 
 const trustedOrigins = getEnv(process.env)
 	.BETTER_TRUSTED_ORIGINS?.split(",")

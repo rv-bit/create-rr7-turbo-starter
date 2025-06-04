@@ -1,8 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { getPublicEnv } from "./environment/env.common";
-
 export function getErrorMessage(error: unknown) {
 	if (typeof error === "string") return error;
 	if (error && typeof error === "object" && "message" in error && typeof error.message === "string") {
@@ -14,7 +12,7 @@ export function getErrorMessage(error: unknown) {
 
 export function getBaseUrl() {
 	if (typeof window !== "undefined") return window.location.origin;
-	if (getPublicEnv(import.meta.env).VITE_BASE_URL) return `https://${getPublicEnv(import.meta.env).VITE_BASE_URL}`;
+	if (process.env.RAILWAY_PUBLIC_DOMAIN) return `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`;
 	return `http://localhost:${process.env.PORT ?? 3000}`;
 }
 
