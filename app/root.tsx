@@ -46,17 +46,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 	});
 }
 
-function Document({
-	children,
-	nonce,
-	theme = "light",
-	env = {},
-}: {
-	children: React.ReactNode;
-	nonce?: string;
-	theme: "light" | "dark";
-	env?: Record<string, any | undefined>;
-}) {
+function Document({ children, nonce, theme = "light" }: { children: React.ReactNode; nonce?: string; theme: "light" | "dark" }) {
 	return (
 		<html lang="en" className={`${theme} h-full overflow-x-hidden`} suppressHydrationWarning>
 			<head>
@@ -102,7 +92,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 	const nonce = useNonce();
 
 	return (
-		<Document nonce={nonce} theme={theme} env={getPublicEnv(import.meta.env)}>
+		<Document nonce={nonce} theme={theme}>
 			{children}
 		</Document>
 	);
