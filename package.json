@@ -3,10 +3,14 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"build": " react-router build",
-		"start": " react-router-serve ./build/server/index.js",
+		"build": "react-router build",
+		"start": "react-router-serve ./build/server/index.js",
 		"dev": "react-router typegen && tsc && bunx --bun vite",
-		"typecheck": "react-router typegen && tsc"
+		"typecheck": "react-router typegen && tsc",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "drizzle-kit migrate",
+		"db:push": "drizzle-kit push",
+		"db:studio": "drizzle-kit studio"
 	},
 	"dependencies": {
 		"@react-email/components": "^0.0.41",
