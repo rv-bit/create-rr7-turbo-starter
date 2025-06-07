@@ -1,0 +1,16 @@
+import { eq } from "drizzle-orm";
+
+import type { TRPCRouterRecord } from "@trpc/server";
+
+import * as schema from "@stack/db/schema";
+import { protectedProcedure, publicProcedure } from "~/server/trpc";
+
+export const greetingRouter = {
+	hello: publicProcedure.query(() => {
+		return "Hello World!";
+	}),
+	user: protectedProcedure.query(async ({ input, ctx }) => {
+		const user = await ctx.db.select().from(schema.user).where(eq(schema.user.id, ctx.user?.id));
+		return user;
+	}),
+} satisfies TRPCRouterRecord;

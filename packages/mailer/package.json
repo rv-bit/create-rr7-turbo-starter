@@ -1,0 +1,25 @@
+{
+	"name": "@stack/mailer",
+	"version": "1.0.0",
+	"main": "mailer.server.ts",
+	"types": "mailer.server.ts",
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"import": "./mailer.server.ts"
+		},
+		"./templates": {
+			"import": "./templates/index.ts"
+		}
+	},
+	"dependencies": {
+		"nodemailer": "^7.0.3",
+		"@react-email/components": "^0.0.41",
+		"zod": "^3.25.55",
+		"dotenv": "^16.5.0"
+	},
+	"devDependencies": {
+		"@types/nodemailer": "^6.4.17",
+		"typescript": "^5.8.3"
+	}
+}

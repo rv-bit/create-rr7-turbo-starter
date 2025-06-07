@@ -9,10 +9,13 @@
 *.sw?
 
 # Node.js dependencies
-/node_modules/
+*node_modules/
 
 # React Router
-/.react-router/
+*.react-router/
 /build/
+
+# Turborepo
+.turbo/
 
 *.env*
