@@ -2,6 +2,7 @@
 	"name": "web",
 	"description": "The main web application, used for landing pages, information, and user interactions.",
 	"private": true,
+	"packageManager": "bun@1.2.2",
 	"type": "module",
 	"scripts": {
 		"build": "react-router build",
