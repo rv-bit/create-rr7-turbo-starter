@@ -2,13 +2,15 @@ FROM oven/bun:1 AS base
 RUN bun i -g cross-env
 WORKDIR /app
 
-FROM base AS deps
-# Copy the entire monorepo for workspace resolution
+# Copy everything to preserve workspace structure
 COPY . .
+
+FROM base AS deps
+# Install all dependencies
 RUN bun i --frozen-lockfile
 
 FROM base AS production-deps  
-COPY . .
+# Install production dependencies
 RUN bun i --production --frozen-lockfile
 
 FROM base AS build
@@ -20,8 +22,8 @@ ARG VITE_HELP_EMAIL
 ENV VITE_DEFAULT_EMAIL=${VITE_DEFAULT_EMAIL}
 ENV VITE_HELP_EMAIL=${VITE_HELP_EMAIL}
 
-# Copy everything with dependencies
-COPY --from=deps /app .
+# Copy dependencies
+COPY --from=deps /app/node_modules ./node_modules
 
 # Build the specific app
 WORKDIR /app/apps/main-app
@@ -30,14 +32,17 @@ RUN bun run build
 FROM base AS final
 WORKDIR /app
 
-# Copy package.json from the app
-COPY --from=build /app/apps/main-app/package.json ./
+# Copy the built app
+COPY --from=build /app/apps/main-app/build ./build
 
-# Copy production node_modules from root (includes workspace packages)
+# Copy package.json from the app
+COPY --from=build /app/apps/main-app/package.json ./package.json
+
+# Copy production dependencies
 COPY --from=production-deps /app/node_modules ./node_modules
 
-# Copy built app
-COPY --from=build /app/apps/main-app/build ./build
+# Copy workspace packages
+COPY --from=production-deps /app/packages ./packages
 
 EXPOSE 8080
 CMD ["bun", "run", "start"]
