@@ -2,7 +2,7 @@ FROM oven/bun:1 AS base
 
 FROM base AS builder
 WORKDIR /app
-RUN bun add -g turbo@^2.5.4
+RUN bun add --global turbo@2.5.4
 COPY . .
 
 # Prune monorepo for target app
@@ -42,5 +42,4 @@ COPY --from=installer /app/bun.lock ./bun.lock
 COPY --from=installer /app/node_modules ./node_modules
 COPY --from=installer /app/apps/web-admin/build ./build
 
-EXPOSE 3000
 CMD ["bun", "run", "start"]
