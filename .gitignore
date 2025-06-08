@@ -13,7 +13,7 @@
 
 # React Router
 *.react-router/
-/build/
+*build/
 
 # Turborepo
 .turbo/

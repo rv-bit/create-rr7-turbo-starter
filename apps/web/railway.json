@@ -1,8 +1,8 @@
 {
 	"build": {
 		"builder": "DOCKERFILE",
-		"dockerfilePath": "apps/admin-app/Dockerfile",
-		"watchPatterns": ["apps/admin-app/**", "packages/**"]
+		"dockerfilePath": "apps/web/Dockerfile",
+		"watchPatterns": ["apps/web/**", "packages/**"]
 	},
 	"deploy": {
 		"numReplicas": 1,

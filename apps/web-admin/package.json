@@ -1,5 +1,6 @@
 {
-	"name": "admin-app",
+	"name": "web-admin",
+	"description": "The admin web application, used for managing the platform, user accounts, and content.",
 	"private": true,
 	"type": "module",
 	"scripts": {
@@ -13,7 +14,6 @@
 		"@stack/utils": "workspace:*",
 		"@stack/mailer": "workspace:*",
 		"@stack/env": "workspace:*",
-
 		"@react-router/node": "^7.5.3",
 		"@react-router/serve": "^7.5.3",
 		"@tanstack/react-query": "^5.80.2",
