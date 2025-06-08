@@ -1,0 +1,12 @@
+{
+	"build": {
+		"builder": "DOCKERFILE",
+		"dockerfilePath": "apps/admin-app/Dockerfile",
+		"watchPatterns": ["apps/admin-app/**", "packages/**"]
+	},
+	"deploy": {
+		"numReplicas": 1,
+		"restartPolicyType": "ON_FAILURE",
+		"sleepApplication": false
+	}
+}

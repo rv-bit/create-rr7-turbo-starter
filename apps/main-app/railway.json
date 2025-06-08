@@ -1,0 +1,12 @@
+{
+	"build": {
+		"builder": "DOCKERFILE",
+		"dockerfilePath": "apps/main-app/Dockerfile",
+		"watchPatterns": ["apps/main-app/**", "packages/**"]
+	},
+	"deploy": {
+		"numReplicas": 1,
+		"restartPolicyType": "ON_FAILURE",
+		"sleepApplication": false
+	}
+}
