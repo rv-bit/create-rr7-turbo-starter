@@ -2,7 +2,7 @@ FROM oven/bun:1 AS base
 
 FROM base AS builder
 WORKDIR /app
-RUN bun add --global turbo@2.5.4
+RUN yarn global add turbo@^2.5.4
 COPY . .
 
 # Prune monorepo for target app
