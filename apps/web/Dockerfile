@@ -8,8 +8,6 @@ COPY . .
 # Check monorepo graph (optional debug)
 RUN bunx turbo run lint --dry-run
 
-RUN find . -name "package.json" -exec jq . {} \;
-
 # Prune monorepo for target app
 RUN bunx turbo prune web --docker
 
