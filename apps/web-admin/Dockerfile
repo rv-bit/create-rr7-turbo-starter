@@ -5,11 +5,11 @@ WORKDIR /app
 RUN bun add -D turbo@^2.5.4
 COPY . .
 
-# Check monorepo graph (optional debug)
-RUN bunx turbo run lint --dry-run
+# # Check monorepo graph (optional debug)
+# RUN bunx turbo run lint --dry-run
 
 # Prune monorepo for target app
-RUN bunx turbo prune web --docker
+RUN bunx turbo prune web-admin --docker
 
 FROM base AS installer
 WORKDIR /app
