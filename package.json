@@ -2,7 +2,7 @@
 	"name": "stack-monorepo",
 	"description": "A monorepo setup to include all necessary technologies for multi applications",
 	"private": true,
-	"packageManager": "bun@1.1.4",
+	"packageManager": "bun@1.2.2",
 	"workspaces": [
 		"apps/*",
 		"packages/*"
@@ -16,7 +16,6 @@
 	"scripts": {
 		"dev": "turbo run dev --parallel",
 		"build": "turbo run build",
-		"lint": "turbo run lint",
-		"check-env": "turbo run check-env"
+		"lint": "turbo run lint"
 	}
 }
