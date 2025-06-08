@@ -2,11 +2,14 @@ FROM oven/bun:1 AS base
 
 FROM base AS builder
 WORKDIR /app
-RUN bun add --global turbo@^2.5.4
+RUN bun add -D turbo@^2.5.4
 COPY . .
 
+# Check monorepo graph (optional debug)
+RUN bunx turbo run lint --dry-run
+
 # Prune monorepo for target app
-RUN turbo prune web-admin --docker
+RUN bunx turbo prune web --docker
 
 FROM base AS installer
 WORKDIR /app
