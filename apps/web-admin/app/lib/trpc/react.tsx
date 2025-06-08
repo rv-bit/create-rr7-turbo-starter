@@ -8,7 +8,7 @@ import superjson from "superjson";
 import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import type { AppRouter } from "~/server/main";
 
-import { getBaseUrl } from "@stack/utils";
+import { getBaseUrl } from "@repo/utils";
 
 function makeQueryClient() {
 	return new QueryClient({

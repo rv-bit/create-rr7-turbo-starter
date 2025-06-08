@@ -1,7 +1,7 @@
 import { drizzle } from "drizzle-orm/mysql2";
 import { createPool } from "mysql2";
 
-import { getEnv } from "@stack/env";
+import { getEnv } from "@repo/env";
 
 console.log("Database connection", {
 	host: getEnv(process.env).MYSQLHOST,

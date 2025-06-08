@@ -2,7 +2,7 @@ import { eq } from "drizzle-orm";
 
 import type { TRPCRouterRecord } from "@trpc/server";
 
-import * as schema from "@stack/db/schema";
+import * as schema from "@repo/db/schema";
 import { protectedProcedure, publicProcedure } from "~/server/trpc";
 
 export const greetingRouter = {

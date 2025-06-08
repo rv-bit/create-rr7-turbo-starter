@@ -4,7 +4,7 @@ import { ZodError } from "zod";
 
 import { auth } from "~/lib/auth/auth.server";
 
-import db from "@stack/db";
+import db from "@repo/db";
 
 export async function createTRPCContext(opts: { headers: Headers }) {
 	const session = await auth.api.getSession({

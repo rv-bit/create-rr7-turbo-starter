@@ -5,8 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import { auth } from "~/lib/auth/auth.server";
 import { useTRPC } from "~/lib/trpc/react";
 
-import db from "@stack/db";
-import * as schema from "@stack/db/schema";
+import db from "@repo/db";
+import * as schema from "@repo/db/schema";
 
 export function meta({}: Route.MetaArgs) {
 	return [{ title: "New React Router App" }, { name: "description", content: "Welcome to React Router!" }];

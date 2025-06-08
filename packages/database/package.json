@@ -1,5 +1,5 @@
 {
-	"name": "@stack/db",
+	"name": "@repo/db",
 	"version": "1.0.0",
 	"main": "database.server.ts",
 	"types": "database.server.ts",

@@ -6,7 +6,7 @@ import { parse } from "cookie";
 import React from "react";
 import { data, Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from "react-router";
 
-import { getPublicEnv } from "@stack/env/common";
+import { getPublicEnv } from "@repo/env/common";
 
 import { APP_DESCRIPTION, APP_NAME, APP_URL } from "./resources/app-config";
 import { THEME_COOKIE_NAME } from "./resources/cookie-config";

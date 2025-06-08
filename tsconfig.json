@@ -2,10 +2,10 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-			"@stack/env": ["packages/env"],
-			"@stack/database": ["packages/database"],
-			"@stack/mailer": ["packages/mailer"],
-			"@stack/utils": ["packages/utils"],
+			"@repo/env": ["packages/env"],
+			"@repo/database": ["packages/database"],
+			"@repo/mailer": ["packages/mailer"],
+			"@repo/utils": ["packages/utils"],
 		},
 
 		// For Vite and React
