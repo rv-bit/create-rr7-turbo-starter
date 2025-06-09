@@ -1,8 +1,7 @@
 FROM oven/bun:1 AS base
 
 FROM base AS builder
-# Set the working directory to the root of the monorepo, as in railway we have to use the application root so /apps/web
-WORKDIR /
+WORKDIR /app
 RUN bun add -D turbo@^2.5.4
 
 # Copy the monorepo files
