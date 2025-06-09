@@ -3,9 +3,12 @@ FROM oven/bun:1 AS base
 FROM base AS builder
 WORKDIR /app
 RUN bun add -D turbo@^2.5.4
-COPY . .
 
 COPY turbo.json package.json ./
+
+# Copy monorepo workspace directories
+COPY apps/ ./apps/
+COPY packages/ ./packages/
 
 # Prune monorepo for target app
 RUN bunx turbo prune web-admin --docker
