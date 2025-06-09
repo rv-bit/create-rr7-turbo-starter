@@ -47,6 +47,11 @@ jobs:
             - name: Install Railway CLI
               run: curl -sSL https://railway.app/install.sh | sh
 
+            - name: Log in to Railway
+              run: railway login --browserless ${{ secrets.RAILWAY_TOKEN }}
+            - name: Set Railway project
+              run: railway link --project ${{ secrets.RAILWAY_PROJECT_ID }}
+
             - name: Deploy web-admin to Railway
               run: |
                   cd apps/web-admin
