@@ -50,9 +50,9 @@ jobs:
             - name: Deploy web-admin to Railway
               run: |
                   cd apps/web-admin
-                  railway up --docker
+                  railway up
 
             - name: Deploy web to Railway
               run: |
                   cd apps/web
-                  railway up --docker
+                  railway up
