@@ -49,14 +49,13 @@ jobs:
             - name: Set Railway token
               env:
                   RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-              run: |
-                  # Now Railway CLI will use the token from env var automatically
+              run: # Now Railway CLI will use the token from env var automatically
                   railway whoami
 
             - name: Set Railway project
               env:
-                  RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
                   RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+                  RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
               run: railway link --project ${{ secrets.RAILWAY_PROJECT_ID }}
 
             - name: Deploy web-admin to Railway
