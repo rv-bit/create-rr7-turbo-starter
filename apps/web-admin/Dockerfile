@@ -1,31 +1,22 @@
-FROM node:22-alpine AS base
-
-# This Dockerfile is copy-pasted into our main docs at /docs/handbook/deploying-with-docker.
-# Make sure you update both files!
+FROM oven/bun:1 AS base
 
 FROM base AS builder
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk update
-RUN apk add --no-cache libc6-compat
-# Set working directory
 WORKDIR /app
-RUN yarn global add turbo
+RUN bun add -D turbo@^2.5.4
 COPY . .
-RUN turbo prune web-admin --docker
 
-# Add lockfile and package.json's of isolated subworkspace
+# # Check monorepo graph (optional debug)
+# RUN bunx turbo run lint --dry-run
+
+# Prune monorepo for target app
+RUN bunx turbo prune web-admin --docker
+
 FROM base AS installer
-RUN apk update
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# First install the dependencies (as they change less often)
+# Install deps with pruned package.json/bun.lock
 COPY --from=builder /app/out/json/ .
-RUN yarn install
-
-# Build the project
-COPY --from=builder /app/out/full/ .
-COPY --from=builder /app/tsconfig.json ./tsconfig.json
+RUN bun i
 
 # Set environment variables on build
 ENV NODE_ENV=production
@@ -36,21 +27,22 @@ ENV VITE_DEFAULT_EMAIL=${VITE_DEFAULT_EMAIL}
 ARG VITE_HELP_EMAIL
 ENV VITE_HELP_EMAIL=${VITE_HELP_EMAIL}
 
-RUN yarn turbo build
+# Build the project
+COPY --from=builder /app/out/full/ .
+COPY --from=builder /app/tsconfig.json ./tsconfig.json
+RUN bun turbo run build
 
 FROM base AS runner
-WORKDIR /app
+WORKDIR /app/apps/web-admin
 
-# Don't run production as root
+# Don't run as root
 RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 react7-app
-USER react7-app
+RUN adduser --system --uid 1001 rr7-app
+USER rr7-app
 
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=installer /app/apps/web-admin/package.json ./package.json
-COPY --from=installer /app/package.json ./package.json
+COPY --from=installer /app/bun.lock ./bun.lock
 COPY --from=installer /app/node_modules ./node_modules
 COPY --from=installer /app/apps/web-admin/build ./build
 
-CMD ["yarn", "start"]
+CMD ["bun", "run", "start"]
