@@ -49,7 +49,7 @@ USER react7-app
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=installer /app/apps/web/package.json ./package.json
-COPY --from=installer /app/bun.lock ./bun.lock
+COPY --from=installer /app/package.json ./package.json
 COPY --from=installer /app/node_modules ./node_modules
 COPY --from=installer /app/apps/web/build ./build
 
