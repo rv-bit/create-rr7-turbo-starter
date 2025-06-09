@@ -46,16 +46,29 @@ jobs:
 
             - name: Install Railway CLI
               run: curl -sSL https://railway.app/install.sh | sh
+            - name: Set Railway token
+              env:
+                  RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+              run: |
+                  # Now Railway CLI will use the token from env var automatically
+                  railway whoami
 
             - name: Set Railway project
+              env:
+                  RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
+                  RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
               run: railway link --project ${{ secrets.RAILWAY_PROJECT_ID }}
 
             - name: Deploy web-admin to Railway
+              env:
+                  RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
               run: |
                   cd apps/web-admin
                   railway up
 
             - name: Deploy web to Railway
+              env:
+                  RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
               run: |
                   cd apps/web
                   railway up
