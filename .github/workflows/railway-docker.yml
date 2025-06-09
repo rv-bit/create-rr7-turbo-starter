@@ -1,0 +1,58 @@
+name: Deploy to Railway
+
+on:
+    push:
+        branches:
+            - feat/mono-repo
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v2
+
+            - name: Log in to Docker Hub
+              uses: docker/login-action@v2
+              with:
+                  username: ${{ secrets.DOCKER_USERNAME }}
+                  password: ${{ secrets.DOCKER_PASSWORD }}
+
+            - name: Build and push web-admin
+              uses: docker/build-push-action@v3
+              with:
+                  context: ./apps/web-admin
+                  file: ./apps/web-admin/Dockerfile
+                  push: true
+                  tags: rontheline/web-admin:latest
+                  # build-args: |
+                  #     VITE_DEFAULT_EMAIL=${{ secrets.VITE_DEFAULT_EMAIL }}
+                  #     VITE_HELP_EMAIL=${{ secrets.VITE_HELP_EMAIL }}
+
+            - name: Build and push web-user
+              uses: docker/build-push-action@v3
+              with:
+                  context: ./apps/web-user
+                  file: ./apps/web-user/Dockerfile
+                  push: true
+                  tags: rontheline/web-user:latest
+                  # build-args: |
+                  #     VITE_DEFAULT_EMAIL=${{ secrets.VITE_DEFAULT_EMAIL }}
+                  #     VITE_HELP_EMAIL=${{ secrets.VITE_HELP_EMAIL }}
+
+            - name: Install Railway CLI
+              run: curl -sSL https://railway.app/install.sh | sh
+
+            - name: Deploy web-admin to Railway
+              run: |
+                  cd apps/web-admin
+                  railway up --docker
+
+            - name: Deploy web-user to Railway
+              run: |
+                  cd apps/web-user
+                  railway up --docker
