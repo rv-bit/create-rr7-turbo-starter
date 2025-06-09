@@ -4,11 +4,8 @@ FROM base AS builder
 WORKDIR /app
 RUN bun add -D turbo@^2.5.4
 
-# Copy monorepo workspace directories
-COPY apps/ ./apps/
-COPY packages/ ./packages/
-
-COPY turbo.json package.json ./
+# Copy the monorepo files
+COPY . .
 
 # Prune monorepo for target app
 RUN bunx turbo prune web --docker

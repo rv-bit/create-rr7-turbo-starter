@@ -1,8 +1,9 @@
 {
 	"build": {
 		"builder": "DOCKERFILE",
+		"dockerfilePath": "apps/web/Dockerfile",
 		"context": ".",
-		"watchPatterns": ["apps/**", "packages/**", "turbo.json", "package.json"]
+		"watchPatterns": ["apps/web/**", "packages/**"]
 	},
 	"deploy": {
 		"numReplicas": 1,
