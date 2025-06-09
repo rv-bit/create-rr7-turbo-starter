@@ -46,5 +46,8 @@ COPY --from=installer /app/bun.lock ./bun.lock
 COPY --from=installer /app/node_modules ./node_modules
 COPY --from=installer /app/apps/web/build ./build
 
-EXPOSE 3000
+# Set the port for the application
+ENV PORT=8081
+
+EXPOSE 8081
 CMD ["bun", "run", "start"]

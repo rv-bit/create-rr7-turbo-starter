@@ -21,6 +21,4 @@ const db = drizzle({
 	client: pool,
 });
 
-console.log("Database connection established", db);
-
 export default db;
