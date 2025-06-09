@@ -5,7 +5,7 @@ WORKDIR /app
 RUN bun add -D turbo@^2.5.4
 
 # Copy the monorepo files
-COPY . .
+COPY ../../ ./
 
 # debug check (optional)
 RUN cat package.json 

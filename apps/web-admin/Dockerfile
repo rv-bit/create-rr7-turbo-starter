@@ -5,7 +5,7 @@ WORKDIR /app
 RUN bun add -D turbo@^2.5.4
 
 # Copy the monorepo files
-COPY . .
+COPY ../../ ./
 
 # Prune monorepo for target app
 RUN bunx turbo prune web-admin --docker
