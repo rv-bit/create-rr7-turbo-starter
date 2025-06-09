@@ -7,6 +7,10 @@ RUN bun add -D turbo@^2.5.4
 # Copy the monorepo files
 COPY ../../ ./
 
+RUN ls -la /app && cat /app/package.json
+RUN ls -la /app/apps
+RUN cat /app/apps/web-admin/package.json
+
 # Prune monorepo for target app
 RUN bunx turbo prune web-admin --docker
 
