@@ -16,7 +16,9 @@ WORKDIR /app
 
 # Install deps with pruned package.json/bun.lock
 COPY --from=builder /app/out/json/ .
-RUN bun i
+
+# Install dependencies but we do a force to ensure we get the correct versions
+RUN bun install --force
 
 # Set environment variables on build
 ENV NODE_ENV=production

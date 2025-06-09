@@ -2,7 +2,6 @@
 	"name": "web-admin",
 	"description": "The admin web application, used for managing the platform, user accounts, and content.",
 	"private": true,
-	"packageManager": "bun@1.2.2",
 	"type": "module",
 	"scripts": {
 		"build": "react-router build",
