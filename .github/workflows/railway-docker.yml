@@ -25,7 +25,7 @@ jobs:
             - name: Build and push web-admin
               uses: docker/build-push-action@v3
               with:
-                  context: ./apps/web-admin
+                  context: ./
                   file: ./apps/web-admin/Dockerfile
                   push: true
                   tags: rontheline/web-admin:latest
@@ -36,7 +36,7 @@ jobs:
             - name: Build and push web-user
               uses: docker/build-push-action@v3
               with:
-                  context: ./apps/web-user
+                  context: ./
                   file: ./apps/web-user/Dockerfile
                   push: true
                   tags: rontheline/web-user:latest
