@@ -33,13 +33,13 @@ jobs:
                   #     VITE_DEFAULT_EMAIL=${{ secrets.VITE_DEFAULT_EMAIL }}
                   #     VITE_HELP_EMAIL=${{ secrets.VITE_HELP_EMAIL }}
 
-            - name: Build and push web-user
+            - name: Build and push web
               uses: docker/build-push-action@v3
               with:
                   context: ./
-                  file: ./apps/web-user/Dockerfile
+                  file: ./apps/web/Dockerfile
                   push: true
-                  tags: rontheline/web-user:latest
+                  tags: rontheline/web:latest
                   # build-args: |
                   #     VITE_DEFAULT_EMAIL=${{ secrets.VITE_DEFAULT_EMAIL }}
                   #     VITE_HELP_EMAIL=${{ secrets.VITE_HELP_EMAIL }}
