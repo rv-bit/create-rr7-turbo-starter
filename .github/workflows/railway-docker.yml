@@ -52,7 +52,7 @@ jobs:
                   cd apps/web-admin
                   railway up --docker
 
-            - name: Deploy web-user to Railway
+            - name: Deploy web to Railway
               run: |
-                  cd apps/web-user
+                  cd apps/web
                   railway up --docker
