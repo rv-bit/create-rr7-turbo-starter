@@ -4,7 +4,7 @@ services:
     container_name: web
     build:
       context: .
-      dockerfile: ./apps/web/Dockerfile
+      dockerfile: ./Dockerfile.web
       args:
         - VITE_DEFAULT_EMAIL="noreply@findr.blog"
         - VITE_HELP_EMAIL=="help@findr.blog"
@@ -17,7 +17,7 @@ services:
     container_name: web-admin
     build:
       context: .
-      dockerfile: ./apps/web-admin/Dockerfile
+      dockerfile: ./Dockerfile.web-admin
       args:
         - VITE_DEFAULT_EMAIL="noreply@findr.blog"
         - VITE_HELP_EMAIL=="help@findr.blog"
