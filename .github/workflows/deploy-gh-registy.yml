@@ -1,44 +1,44 @@
-name: Deploy to GitHub Container Registry
-description: Build and push Docker images to GitHub Container Registry for web-admin and web applications.
+# name: Deploy to GitHub Container Registry
+# description: Build and push Docker images to GitHub Container Registry for web-admin and web applications.
 
-on:
-    push:
-        branches:
-            - feat/mono-repo
+# on:
+#     push:
+#         branches:
+#             - feat/mono-repo
 
-jobs:
-    build-and-deploy:
-        runs-on: ubuntu-latest
+# jobs:
+#     build-and-deploy:
+#         runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
+#         steps:
+#             - name: Checkout code
+#               uses: actions/checkout@v2
 
-            - name: Log in to GitHub Container Registry
-              uses: docker/login-action@v2
-              with:
-                  registry: ghcr.io
-                  username: ${{ github.actor }}
-                  password: ${{ secrets.GHCR_PAT }}
+#             - name: Log in to GitHub Container Registry
+#               uses: docker/login-action@v2
+#               with:
+#                   registry: ghcr.io
+#                   username: ${{ github.actor }}
+#                   password: ${{ secrets.GHCR_PAT }}
 
-            - name: Build and push web-admin image
-              uses: docker/build-push-action@v3
-              with:
-                  context: ./
-                  file: ./apps/web-admin/Dockerfile
-                  push: true
-                  tags: ghcr.io/${{ github.repository_owner }}/web-admin:latest
-                  build-args: |
-                      VITE_DEFAULT_EMAIL=${{ secrets.VITE_DEFAULT_EMAIL }}
-                      VITE_HELP_EMAIL=${{ secrets.VITE_HELP_EMAIL }}
+#             - name: Build and push web-admin image
+#               uses: docker/build-push-action@v3
+#               with:
+#                   context: ./
+#                   file: ./apps/web-admin/Dockerfile
+#                   push: true
+#                   tags: ghcr.io/${{ github.repository_owner }}/web-admin:latest
+#                   build-args: |
+#                       VITE_DEFAULT_EMAIL=${{ secrets.VITE_DEFAULT_EMAIL }}
+#                       VITE_HELP_EMAIL=${{ secrets.VITE_HELP_EMAIL }}
 
-            - name: Build and push web image
-              uses: docker/build-push-action@v3
-              with:
-                  context: ./
-                  file: ./apps/web/Dockerfile
-                  push: true
-                  tags: ghcr.io/${{ github.repository_owner }}/web:latest
-                  build-args: |
-                      VITE_DEFAULT_EMAIL=${{ secrets.VITE_DEFAULT_EMAIL }}
-                      VITE_HELP_EMAIL=${{ secrets.VITE_HELP_EMAIL }}
+#             - name: Build and push web image
+#               uses: docker/build-push-action@v3
+#               with:
+#                   context: ./
+#                   file: ./apps/web/Dockerfile
+#                   push: true
+#                   tags: ghcr.io/${{ github.repository_owner }}/web:latest
+#                   build-args: |
+#                       VITE_DEFAULT_EMAIL=${{ secrets.VITE_DEFAULT_EMAIL }}
+#                       VITE_HELP_EMAIL=${{ secrets.VITE_HELP_EMAIL }}
