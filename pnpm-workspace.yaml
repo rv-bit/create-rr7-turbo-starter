@@ -1,2 +1,3 @@
 packages:
   - 'templates/*'
+  - '.'  # ← include the root package
