@@ -5,6 +5,12 @@
 	"description": "CLI tool to scaffold Turbo Repo templates",
 	"keywords": [],
 	"version": "1.0.2",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
+	"repository": {
+		"url": "https://github.com/rv-bit/create-rr7-turbo-starter.git"
+	},
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
