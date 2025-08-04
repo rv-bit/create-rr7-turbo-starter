@@ -9,13 +9,26 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
+
             - uses: pnpm/action-setup@v2
               with:
                   version: 7
+
             - uses: actions/setup-node@v3
               with:
                   node-version: 20.x
-                  ache: 'pnpm'
+                  cache: 'pnpm'
 
-            - run: pnpm install --frozen-lockfile
-            - run: pnpm run lint && pnpm run build
+            - name: Validate lockfile
+              run: |
+                  if [ ! -f pnpm-lock.yaml ]; then
+                    echo "Lockfile missing!"
+                    exit 1
+                  fi
+                  pnpm install --lockfile-only
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Lint and build
+              run: pnpm run lint && pnpm run build

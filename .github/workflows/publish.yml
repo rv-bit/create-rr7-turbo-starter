@@ -25,6 +25,14 @@ jobs:
                   node-version: 20.x
                   cache: 'pnpm'
 
+            - name: Validate lockfile
+              run: |
+                  if [ ! -f pnpm-lock.yaml ]; then
+                    echo "Lockfile missing!"
+                    exit 1
+                  fi
+                  pnpm install --lockfile-only
+
             - run: pnpm install --frozen-lockfile
             - name: Create Release Pull Request or Publish
               id: changesets
