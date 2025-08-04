@@ -26,7 +26,8 @@ jobs:
             - uses: actions/setup-node@v3
               with:
                   node-version: 20.x
-                  registry-url: https://npm.pkg.github.com/
+                  # Use the public npm registry here, not GitHub Packages
+                  registry-url: https://registry.npmjs.org/
                   cache: 'pnpm'
 
             - name: Validate lockfile
@@ -38,6 +39,11 @@ jobs:
                   pnpm install --lockfile-only
 
             - run: pnpm install --frozen-lockfile
+
+            - name: Authenticate npm
+              run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+              env:
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
             - name: Create Release Pull Request or Publish
               id: changesets
