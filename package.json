@@ -2,6 +2,8 @@
 	"name": "@rontheline/create-rr7-turbo-starter",
 	"version": "0.0.2",
 	"description": "CLI tool to scaffold Turbo Repo templates",
+	"license": "MIT",
+	"author": "rv-bit",
 	"keywords": [],
 	"homepage": "https://github.com/rv-bit/create-rr7-turbo-starter#readme",
 	"bugs": {
@@ -14,16 +16,15 @@
 		"registry": "https://registry.npmjs.org/",
 		"access": "public"
 	},
-	"license": "MIT",
-	"author": "rv-bit",
+	"type": "module",
 	"main": "dist/index.js",
-	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
 	"bin": {
-		"create-rr7-turbo-starter": "./dist/index.js"
+		"create-rr7-turbo-starter": "./dist/index.mjs"
 	},
 	"scripts": {
-		"build": "tsup index.ts --format cjs,esm --dts",
+		"build": "tsup index.ts --format esm --dts",
+		"postbuild": "cp -R templates dist/",
 		"release": "pnpm run build && changeset publish",
 		"lint": "tsc"
 	},
