@@ -53,4 +53,4 @@ jobs:
                   publish: pnpm run release
               env:
                   GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.GH_PAT }}
