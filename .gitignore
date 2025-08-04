@@ -11,4 +11,7 @@
 # Node.js dependencies
 *node_modules/
 
+# Changelogs
+*CHANGELOG.MD
+
 *.env*
