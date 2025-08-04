@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"description": "CLI tool to scaffold Turbo Repo templates",
 	"keywords": [],
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
