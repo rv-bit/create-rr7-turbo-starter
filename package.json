@@ -1,15 +1,22 @@
 {
-	"name": "@rontheline/create-rr7-turbo-starter",
-	"author": "rv-bit",
-	"license": "MIT",
+	"name": "@rv-bit/create-rr7-turbo-starter",
+	"version": "0.0.1",
 	"description": "CLI tool to scaffold Turbo Repo templates",
 	"keywords": [],
-	"version": "0.0.1",
-	"repository": {
-		"url": "https://github.com/rv-bit/create-rr7-turbo-starter.git"
+	"homepage": "https://github.com/rv-bit/create-rr7-turbo-starter#readme",
+	"bugs": {
+		"url": "https://github.com/rv-bit/create-rr7-turbo-starter/issues"
 	},
+	"repository": {
+		"url": "git+https://github.com/rv-bit/create-rr7-turbo-starter.git"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"license": "MIT",
+	"author": "rv-bit",
+	"type": "commonjs",
 	"main": "dist/index.js",
-	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
 	"scripts": {
 		"build": "tsup index.ts --format cjs,esm --dts",
@@ -30,5 +37,6 @@
 		"@changesets/cli": "^2.29.5",
 		"tsup": "^8.5.0",
 		"typescript": "^5.9.2"
-	}
+	},
+	"module": "dist/index.mjs"
 }

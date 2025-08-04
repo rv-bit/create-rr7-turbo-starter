@@ -26,7 +26,7 @@ jobs:
             - uses: actions/setup-node@v3
               with:
                   node-version: 20.x
-                  registry-url: https://registry.npmjs.org/
+                  registry-url: https://npm.pkg.github.com/
                   cache: 'pnpm'
 
             - name: Validate lockfile
@@ -37,10 +37,12 @@ jobs:
                   fi
                   pnpm install --lockfile-only
 
-            - name: Set up .npmrc for publishing
-              run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+            - name: Set up .npmrc for GitHub Packages
+              run: |
+                  echo "@rv-bit:registry=https://npm.pkg.github.com/" >> ~/.npmrc
+                  echo "//npm.pkg.github.com/:_authToken=${GH_PAT}" >> ~/.npmrc
               env:
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  GH_PAT: ${{ secrets.GH_PAT }}
 
             - run: pnpm install --frozen-lockfile
 
