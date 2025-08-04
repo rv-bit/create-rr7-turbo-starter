@@ -39,14 +39,6 @@ jobs:
 
             - run: pnpm install --frozen-lockfile
 
-            - name: Configure .npmrc and registry
-              run: |
-                  echo "@rv-bit:registry=https://npm.pkg.github.com/" >> ~/.npmrc
-                  echo "//npm.pkg.github.com/:_authToken=${GH_PAT}" >> ~/.npmrc
-              shell: bash
-              env:
-                  GH_PAT: ${{ secrets.GH_PAT }}
-
             - name: Set registry env var
               run: echo "NPM_CONFIG_REGISTRY=https://npm.pkg.github.com/" >> $GITHUB_ENV
 
@@ -57,4 +49,4 @@ jobs:
                   publish: pnpm run release
               env:
                   GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-                  NPM_TOKEN: ${{ secrets.GH_PAT }}
+                  NODE_AUTH_TOKEN: ${{ secrets.GH_PAT }}
