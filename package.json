@@ -18,6 +18,9 @@
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
+	"bin": {
+		"create-rr7-turbo-starter": "./dist/index.js"
+	},
 	"scripts": {
 		"build": "tsup index.ts --format cjs,esm --dts",
 		"release": "npm run build && changeset publish --no-verify --registry=https://npm.pkg.github.com/",
