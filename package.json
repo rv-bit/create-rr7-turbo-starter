@@ -1,5 +1,5 @@
 {
-	"name": "create-rr7-turbo-starter",
+	"name": "@rontheline/create-rr7-turbo-starter",
 	"author": "rv-bit",
 	"license": "MIT",
 	"description": "CLI tool to scaffold Turbo Repo templates",
