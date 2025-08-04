@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 
-import { getEnv } from "@repo/env";
-import logger from "@repo/utils/logger";
+import { getEnv } from "@org/environment";
+import logger from "@org/utils/logger";
 
 interface EmailProps {
 	to: string;

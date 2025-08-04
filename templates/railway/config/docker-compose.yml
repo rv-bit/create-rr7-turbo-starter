@@ -6,24 +6,11 @@ services:
       context: .
       dockerfile: ./Dockerfile.web
       args:
-        - VITE_DEFAULT_EMAIL="noreply@findr.blog"
-        - VITE_HELP_EMAIL=="help@findr.blog"
+        - VITE_DEFAULT_EMAIL="test@domain"
+        - VITE_HELP_EMAIL=="test@domain"
     restart: always
     ports:
       - 8081:8081
-    networks:
-      - app_network
-  web-admin:
-    container_name: web-admin
-    build:
-      context: .
-      dockerfile: ./Dockerfile.web-admin
-      args:
-        - VITE_DEFAULT_EMAIL="noreply@findr.blog"
-        - VITE_HELP_EMAIL=="help@findr.blog"
-    restart: always
-    ports:
-      - 8080:8080
     networks:
       - app_network
 

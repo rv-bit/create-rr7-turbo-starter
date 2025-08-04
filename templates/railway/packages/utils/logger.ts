@@ -1,4 +1,4 @@
-import { getEnv } from "@repo/env";
+import { getEnv } from "@org/environment";
 import winston from "winston";
 
 const enumerateErrorFormat = winston.format((info) => {

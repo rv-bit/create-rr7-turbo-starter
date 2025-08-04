@@ -1,5 +1,5 @@
 {
-	"name": "@repo/db",
+	"name": "@org/db",
 	"version": "1.0.0",
 	"main": "database.server.ts",
 	"types": "database.server.ts",
@@ -20,8 +20,8 @@
 		"drizzle-kit": "^0.31.1"
 	},
 	"scripts": {
-		"db:generate": "drizzle-kit generate",
-		"db:migrate": "drizzle-kit migrate",
+		"db:generate": "drizzle-kit generate --config ./config/drizzle.config.ts",
+		"db:migrate": "drizzle-kit migrate --config ./config/drizzle.config.ts",
 		"db:push": "drizzle-kit push",
 		"db:studio": "drizzle-kit studio"
 	}

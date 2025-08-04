@@ -2,14 +2,14 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { admin, createAuthMiddleware, emailOTP, twoFactor, username } from "better-auth/plugins";
 
-import db from "@repo/db";
-import * as schema from "@repo/db/schema";
+import db from "@org/db";
+import * as schema from "@org/db/schema";
 
-import { getEnv } from "@repo/env";
-import { getBaseUrl } from "@repo/utils";
+import { getEnv } from "@org/environment";
+import { getBaseUrl } from "@org/utils";
 
-import { sendEmail } from "@repo/mailer";
-import * as EMAIL_TEMPLATES from "@repo/mailer/templates";
+import { sendEmail } from "@org/mailer";
+import * as EMAIL_TEMPLATES from "@org/mailer/templates";
 
 import * as APP_CONFIG from "~/resources/app-config";
 

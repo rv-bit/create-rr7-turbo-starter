@@ -1,8 +1,7 @@
 {
-	"name": "stack-monorepo",
-	"description": "A monorepo setup to include all necessary technologies for multi applications",
+	"name": "railway-monorepo",
+	"description": "A monorepo setup to include all necessary technologies for multi applications and deployment on Railway.",
 	"private": true,
-	"packageManager": "bun@1.2.2",
 	"workspaces": [
 		"apps/*",
 		"packages/*"

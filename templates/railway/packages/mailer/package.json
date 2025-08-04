@@ -1,5 +1,5 @@
 {
-	"name": "@repo/mailer",
+	"name": "@org/mailer",
 	"version": "1.0.0",
 	"main": "mailer.server.ts",
 	"types": "mailer.server.ts",
