@@ -8,15 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@types/fs-extra':
-        specifier: ^11.0.4
-        version: 11.0.4
-      '@types/inquirer':
-        specifier: ^9.0.8
-        version: 9.0.8
-      '@types/minimist':
-        specifier: ^1.2.5
-        version: 1.2.5
       chalk:
         specifier: ^5.5.0
         version: 5.5.0
@@ -36,6 +27,15 @@ importers:
       '@changesets/cli':
         specifier: ^2.29.5
         version: 2.29.5
+      '@types/fs-extra':
+        specifier: ^11.0.4
+        version: 11.0.4
+      '@types/inquirer':
+        specifier: ^9.0.8
+        version: 9.0.8
+      '@types/minimist':
+        specifier: ^1.2.5
+        version: 1.2.5
       tsup:
         specifier: ^8.5.0
         version: 8.5.0(typescript@5.9.2)
