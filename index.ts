@@ -34,8 +34,6 @@ if (args.help) {
         Options:
         --template, -t     Name of the template to use (e.g., cloudflare, railway)
         --name, -n         Name of your new project
-        --git, -g          Initialize a Git repository
-        --env, -e          Generate a .env file (from .env.example if exists)
         --help, -h         Show this help message
 
         Examples:
@@ -48,8 +46,7 @@ if (args.help) {
 
 const passedTemplate = args.template || args.t
 const passedProjectName = args.name || args.n
-const initGit = args.git || false
-const generateEnv = args.env || false
+const passedInitGit = args.git || false
 
 ;(async () => {
 	console.log(chalk.cyan.bold('\n🚀 Create a new project from a template\n'))
@@ -58,6 +55,7 @@ const generateEnv = args.env || false
 
 	let template = passedTemplate
 	let projectName = passedProjectName
+	let initGit = passedInitGit
 
 	if (!template || !templates.includes(template)) {
 		if (template && !templates.includes(template)) {
@@ -98,25 +96,35 @@ const generateEnv = args.env || false
 
 	await fs.copy(templatePath, targetPath)
 
-	// Optional: Generate .env if a template file exists
-	if (generateEnv) {
-		const envTemplate = path.join(templatePath, '.env.example')
-		const envTarget = path.join(targetPath, '.env')
-		if (fs.existsSync(envTemplate)) {
-			await fs.copy(envTemplate, envTarget)
-			console.log(chalk.green('📄 .env file created from .env.example'))
-		} else {
-			await fs.outputFile(envTarget, '# Your environment variables\n')
-			console.log(chalk.green('📄 Blank .env file generated'))
-		}
+	const envTemplate = path.join(templatePath, '.env.example')
+	const envTarget = path.join(targetPath, '.env')
+	if (fs.existsSync(envTemplate)) {
+		await fs.copy(envTemplate, envTarget)
+		await fs.unlink(path.join(targetPath, '.env.example')) // Remove this from the folder created
+		console.log(chalk.green('📄 .env file created from .env.example'))
+	} else {
+		await fs.outputFile(envTarget, '# Your environment variables\n')
+		console.log(chalk.green('📄 Blank .env file generated'))
 	}
 
-	// Optional: Git init
+	if (!initGit) {
+		const answers = await inquirer.prompt([
+			{
+				name: 'initGit',
+				type: 'confirm',
+				message: 'Would you like to initialize git:',
+			},
+		])
+
+		initGit = answers.initGit
+	}
+
 	if (initGit) {
 		const git = simpleGit(targetPath)
 		await git.init()
 		await git.add('.')
 		await git.commit('Initial commit from starter CLI')
+
 		console.log(chalk.green('🔧 Git repo initialized'))
 	}
 
