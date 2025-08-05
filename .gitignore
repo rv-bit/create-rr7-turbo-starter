@@ -9,7 +9,7 @@
 *.sw?
 
 # Build directories
-*dist/
+*dist
 
 # Node.js dependencies
 *node_modules/
