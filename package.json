@@ -1,6 +1,6 @@
 {
 	"name": "@rontheline/create-rr7-turbo-starter",
-	"version": "0.0.2",
+	"version": "0.1.0",
 	"description": "CLI tool to scaffold Turbo Repo templates",
 	"license": "MIT",
 	"author": "rv-bit",
