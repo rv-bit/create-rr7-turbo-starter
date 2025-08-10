@@ -3,12 +3,6 @@ import { createPool } from "mysql2";
 
 import { getEnv } from "@org/environment";
 
-console.log("Database connection", {
-	host: getEnv(process.env).MYSQLHOST,
-	user: getEnv(process.env).MYSQLUSER,
-	database: getEnv(process.env).MYSQL_DATABASE,
-});
-
 const pool = createPool({
 	host: getEnv(process.env).MYSQLHOST,
 	user: getEnv(process.env).MYSQLUSER,
