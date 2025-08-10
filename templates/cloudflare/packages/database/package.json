@@ -1,0 +1,20 @@
+{
+	"name": "@org/db",
+	"exports": {
+		"./schema": {
+			"import": "./schema/index.ts"
+		}
+	},
+	"dependencies": {
+		"drizzle-orm": "^0.44.2"
+	},
+	"devDependencies": {
+		"drizzle-kit": "^0.31.1"
+	},
+	"scripts": {
+		"db:generate": "drizzle-kit generate --config ./config/drizzle.config.ts",
+		"db:migrate": "wrangler d1 migrations apply --local DB",
+		"db:migrate-production": "drizzle-kit migrate --config ./config/drizzle.config.ts",
+		"db:studio": "drizzle-kit studio"
+	}
+}

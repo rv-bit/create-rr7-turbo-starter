@@ -1,0 +1,24 @@
+# Editor directories and files
+.vscode
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Node.js dependencies
+*node_modules/
+
+# React Router
+*.react-router/
+*build/
+
+# Turborepo
+.turbo/
+*out/
+
+*.env*
+
+!*.env.example

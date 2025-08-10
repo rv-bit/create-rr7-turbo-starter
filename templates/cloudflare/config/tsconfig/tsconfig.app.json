@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@org/environment": ["../packages/environment"],
+			"@org/database": ["../packages/database"],
+			"@org/mailer": ["../packages/mailer"],
+			"@org/utils": ["../packages/utils"]
+		}
+	},
+	"exclude": ["node_modules", "build", "dist"],
+	"include": ["../packages/**/*", "../apps/**/*", "../turbo.d.ts"]
+}

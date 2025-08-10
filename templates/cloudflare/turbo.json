@@ -1,0 +1,22 @@
+{
+	"$schema": "https://turborepo.org/schema.json",
+	"dangerouslyDisablePackageManagerCheck": true,
+	"tasks": {
+		"build": {
+			"inputs": ["$TURBO_DEFAULT$", ".env*"],
+			"dependsOn": ["^build"],
+			"outputs": ["build/**"]
+		},
+		"dev": {
+			"cache": false,
+			"persistent": true
+		},
+		"test": {
+			"outputs": ["coverage/**"],
+			"dependsOn": []
+		},
+		"clean": {
+			"cache": false
+		}
+	}
+}

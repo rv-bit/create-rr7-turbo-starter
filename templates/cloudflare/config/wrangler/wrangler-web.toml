@@ -1,0 +1,31 @@
+# Top-level configuration for Wrangler web application
+name = "web-app-worker"
+main = "./apps/web/workers/app.ts"
+compatibility_date = "2025-08-10"
+
+workers_dev = false
+preview_urls = true
+
+[build]
+command = "npx turbo run build --filter=web"
+cwd = "."
+watch_dir = "./build"
+
+[vars]
+VALUE_FROM_CLOUDFLARE = "Hello from Cloudflare"
+
+[env.staging.vars]
+VALUE_FROM_CLOUDFLARE = "Hello from Cloudflare Staging"
+
+[env.production.vars]
+VALUE_FROM_CLOUDFLARE = "Hello from Cloudflare Production"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "prod-d1-tutorial"
+database_id = "4365d432-845c-432d-b11a-38bf8e06caff"
+migrations_dir = "drizzle"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"

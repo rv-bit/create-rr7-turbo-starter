@@ -1,0 +1,17 @@
+{
+	"name": "@org/environment",
+	"main": "env.server.ts",
+	"types": "env.server.ts",
+	"exports": {
+		".": {
+			"import": "./env.server.ts"
+		},
+		"./common": {
+			"import": "./env.common.ts"
+		}
+	},
+	"dependencies": {
+		"zod": "^3.25.55",
+		"dotenv": "^16.5.0"
+	}
+}
