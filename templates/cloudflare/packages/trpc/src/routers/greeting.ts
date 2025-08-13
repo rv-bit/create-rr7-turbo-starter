@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 
 import type { TRPCRouterRecord } from "@trpc/server";
-import { protectedProcedure, publicProcedure } from "~/server/trpc";
+import { protectedProcedure, publicProcedure } from "../server";
 
 import * as schema from "@org/db/schema";
 

@@ -1,0 +1,25 @@
+{
+	"name": "@org/trpc",
+	"main": "./src/index.ts",
+	"exports": {
+		".": {
+			"import": "./src/index.ts"
+		},
+		"./client": {
+			"import": "./src/client.ts"
+		},
+		"./server": {
+			"import": "./src/server.ts"
+		}
+	},
+	"dependencies": {
+		"@trpc/tanstack-react-query": "^11.4.2",
+		"@trpc/client": "^11.4.2",
+		"@trpc/server": "^11.4.2",
+		"better-auth": "^1.2.10"
+	},
+	"peerDependencies": {
+		"drizzle-orm": "^0.44.2",
+		"mysql2": "^3.14.1"
+	}
+}
