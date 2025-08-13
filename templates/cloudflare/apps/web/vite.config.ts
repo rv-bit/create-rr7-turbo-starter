@@ -10,7 +10,6 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vite";
 
 const commonPlugins = [
-	cloudflare({ viteEnvironment: { name: "ssr" } }),
 	devtoolsJson(),
 	reactRouter(),
 	tsconfigPaths(),
@@ -33,7 +32,7 @@ const devConfig = {
 		cors: true,
 	},
 
-	plugins: [...commonPlugins, ...devPlugins],
+	plugins: [...devPlugins, ...commonPlugins],
 
 	resolve: {
 		alias: {
@@ -43,7 +42,10 @@ const devConfig = {
 };
 
 const prodConfig = {
-	plugins: [...commonPlugins],
+	build: {
+		outDir: "build",
+	},
+	plugins: [...commonPlugins, cloudflare({ viteEnvironment: { name: "ssr" }, configPath: "../../config/wrangler/wrangler-web.toml" })],
 	resolve: {
 		alias: {
 			"react-dom/server": "react-dom/server.node",
