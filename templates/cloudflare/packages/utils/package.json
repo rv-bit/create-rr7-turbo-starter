@@ -1,12 +1,16 @@
 {
 	"name": "@org/utils",
-	"main": "index.ts",
+	"main": "./src/index.ts",
+	"types": "./src/index.ts",
 	"exports": {
 		".": {
-			"import": "./index.ts"
+			"import": "./src/index.ts"
 		},
 		"./logger": {
-			"import": "./logger.ts"
+			"import": "./src/misc/logger.ts"
+		},
+		"./client": {
+			"import": "./src/client/index.ts"
 		}
 	},
 	"dependencies": {
