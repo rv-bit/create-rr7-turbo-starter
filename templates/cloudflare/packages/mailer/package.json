@@ -1,13 +1,13 @@
 {
 	"name": "@org/mailer",
-	"main": "mailer.server.ts",
-	"types": "mailer.server.ts",
+	"main": "./src/mailer.server.ts",
+	"types": "./src/mailer.server.ts",
 	"exports": {
 		".": {
-			"import": "./mailer.server.ts"
+			"import": "./src/mailer.server.ts"
 		},
 		"./templates": {
-			"import": "./templates/index.ts"
+			"import": "./src/templates/index.ts"
 		}
 	},
 	"dependencies": {
