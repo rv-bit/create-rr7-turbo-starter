@@ -7,7 +7,7 @@
 	"scripts": {
 		"build": "react-router build",
 		"start": "react-router-serve ./build/server/index.js",
-		"dev": "react-router typegen && bunx --bun vite",
+		"dev": "bunx --bun vite dev",
 		"typecheck": "npm run cf-typegen && react-router typegen && tsc -b",
 		"cf-typegen": "wrangler types --config ../../config/wrangler/wrangler-web.toml",
 		"deploy": "npm run build && wrangler deploy",

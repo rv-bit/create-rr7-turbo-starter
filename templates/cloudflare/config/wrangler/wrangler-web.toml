@@ -20,7 +20,3 @@ binding = "DB"
 database_name = "prod-d1-tutorial"
 database_id = "4365d432-845c-432d-b11a-38bf8e06caff"
 migrations_dir = "drizzle"
-
-[assets]
-directory = "./public"
-binding = "ASSETS"
