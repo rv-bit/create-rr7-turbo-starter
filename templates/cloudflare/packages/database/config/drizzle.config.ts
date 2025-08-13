@@ -3,7 +3,7 @@ import { type Config, defineConfig } from "drizzle-kit";
 
 export default defineConfig({
 	out: "../drizzle",
-	schema: "./schema",
+	schema: "./src/schema",
 
 	dialect: "mysql",
 	driver: "d1-http",
