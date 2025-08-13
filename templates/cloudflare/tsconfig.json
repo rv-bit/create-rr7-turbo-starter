@@ -1,22 +1,6 @@
 {
-	"files": [],
-	"references": [{ "path": "./config/tsconfig/tsconfig.node.json" }, { "path": "./config/tsconfig/tsconfig.cloudflare.json" }],
-	"compilerOptions": {
-		"esModuleInterop": true,
-		"verbatimModuleSyntax": true,
-		"noEmit": true,
-		"resolveJsonModule": true,
+	"extends": "./config/tsconfig/tsconfig.base.json",
 
-		// Best practices
-		"strict": true,
-		"skipLibCheck": true,
-		"noFallthroughCasesInSwitch": true
-
-		// Some stricter flags that are not enabled by default
-		// "noUnusedLocals": true
-		// "noUnusedParameters": true
-
-		// used for like process.env["NODE_ENV"] and not process.env.NODE_ENV
-		// "noPropertyAccessFromIndexSignature": true
-	}
+	"exclude": ["node_modules", "build", "dist"],
+	"include": ["packages/**/*", "apps/**/*", "turbo.d.ts"]
 }

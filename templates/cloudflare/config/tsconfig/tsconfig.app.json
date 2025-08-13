@@ -1,13 +1,13 @@
 {
+	"extends": "../../tsconfig.json",
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
+			"@org/auth": ["../packages/auth"],
 			"@org/environment": ["../packages/environment"],
-			"@org/database": ["../packages/database"],
+			"@org/db": ["../packages/database"],
 			"@org/mailer": ["../packages/mailer"],
 			"@org/utils": ["../packages/utils"]
 		}
-	},
-	"exclude": ["node_modules", "build", "dist"],
-	"include": ["../packages/**/*", "../apps/**/*", "../turbo.d.ts"]
+	}
 }
