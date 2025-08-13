@@ -1,0 +1,19 @@
+{
+	"name": "@org/auth",
+	"main": "./src/auth.ts",
+	"types": "./src/auth.ts",
+	"exports": {
+		".": {
+			"import": "./src/auth.ts"
+		},
+		"./permissions": {
+			"import": "./src/permissions/index.ts"
+		}
+	},
+	"dependencies": {
+		"better-auth": "^1.2.10"
+	},
+	"devDependencies": {
+		"typescript": "^5.4.3"
+	}
+}

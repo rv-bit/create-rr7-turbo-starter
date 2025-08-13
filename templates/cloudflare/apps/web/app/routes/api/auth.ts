@@ -1,11 +1,19 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
+import type { ActionFunctionArgs, AppLoadContext, LoaderFunctionArgs } from "react-router";
 
-import { auth } from "~/lib/auth/auth.server";
+export async function loader(args: LoaderFunctionArgs) {
+	const request = args.request;
+	const ctx = args.context as AppLoadContext;
 
-export async function loader({ request }: LoaderFunctionArgs) {
+	const auth = ctx.auth;
+
 	return auth.handler(request);
 }
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function action(args: ActionFunctionArgs) {
+	const request = args.request;
+	const ctx = args.context as AppLoadContext;
+
+	const auth = ctx.auth;
+
 	return auth.handler(request);
 }
