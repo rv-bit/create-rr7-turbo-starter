@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { z } from "zod";
 
-import { makeTypeEnv, publicEnvSchema } from "./env.common";
+import { makeTypeEnv, publicEnvSchema } from "./client/env.common";
 
 const envSchema = publicEnvSchema.extend({
 	// Environment variables for the Railway deployment

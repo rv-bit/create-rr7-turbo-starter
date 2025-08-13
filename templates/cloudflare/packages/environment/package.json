@@ -1,13 +1,13 @@
 {
 	"name": "@org/environment",
-	"main": "env.server.ts",
-	"types": "env.server.ts",
+	"main": "./src/env.server.ts",
+	"types": "./src/env.server.ts",
 	"exports": {
 		".": {
-			"import": "./env.server.ts"
+			"import": "./src/env.server.ts"
 		},
 		"./common": {
-			"import": "./env.common.ts"
+			"import": "./src/client/env.common.ts"
 		}
 	},
 	"dependencies": {
